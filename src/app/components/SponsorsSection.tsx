@@ -2,95 +2,72 @@ import { motion } from "motion/react";
 
 const partners = [
   {
-    name: "Apex Capital",
-    abbr: "AC",
-    tagline: "INVESTMENT PARTNERS",
+    name: "KNX",
+    logo: "/KNX_Logo.png",
   },
   {
-    name: "Nexus Group",
-    abbr: "NX",
-    tagline: "STRATEGIC CONSULTING",
+    name: "MDT",
+    logo: "/MDT_Logo.png",
   },
   {
-    name: "Vantage Corp",
-    abbr: "VC",
-    tagline: "GLOBAL VENTURES",
+    name: "Trivum",
+    logo: "/Trivum_Logo.png",
   },
   {
-    name: "Meridian Co.",
-    abbr: "MC",
-    tagline: "ENTERPRISE SOLUTIONS",
+    name: "Earthquake",
+    logo: "/Earthquake-logo.png",
   },
   {
-    name: "Orion Labs",
-    abbr: "OL",
-    tagline: "INNOVATION STUDIO",
+    name: "Fasttel",
+    logo: "/Fasttel_logo.png",
   },
   {
-    name: "Summit Holdings",
-    abbr: "SH",
-    tagline: "PRIVATE EQUITY",
+    name: "Discipline",
+    logo: "/DISCIPLINE-LOGO.png",
+  },
+  {
+    name: "Blauberg",
+    logo: "/blauberg-logo-white.png",
   },
 ];
 
-function LogoPlaceholder({ name, abbr, tagline }: { name: string; abbr: string; tagline: string }) {
+function LogoCard({ name, logo }: { name: string; logo: string }) {
   return (
-    <div
-      className="flex flex-col items-center justify-center gap-2 py-8 px-6 transition-all duration-300 group"
+    <motion.div
+      whileHover={{ y: -4, scale: 1.02 }}
+      transition={{ duration: 0.25 }}
+      className="relative flex items-center justify-center px-6 py-7 group"
       style={{
-        border: "1px solid rgba(255,255,255,0.06)",
-        borderRadius: "2px",
-        cursor: "default",
-        minHeight: 100,
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,107,0,0.2)";
-        (e.currentTarget as HTMLDivElement).style.background = "rgba(255,107,0,0.03)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.06)";
-        (e.currentTarget as HTMLDivElement).style.background = "transparent";
+        minHeight: 108,
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%)",
+        border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: "16px",
+        overflow: "hidden",
       }}
     >
-      {/* Monochrome wordmark style */}
-      <div className="flex items-baseline gap-1.5">
-        <span
-          style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            fontWeight: 900,
-            fontSize: 22,
-            letterSpacing: "0.05em",
-            color: "rgba(255,255,255,0.35)",
-            lineHeight: 1,
-          }}
-        >
-          {abbr}
-        </span>
-        <span
-          style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            fontWeight: 600,
-            fontSize: 16,
-            letterSpacing: "0.1em",
-            color: "rgba(255,255,255,0.2)",
-            lineHeight: 1,
-          }}
-        >
-          {name.split(" ")[1] || ""}
-        </span>
-      </div>
-      <span
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
-          fontFamily: "'Space Grotesk', sans-serif",
-          fontSize: 8,
-          letterSpacing: "0.2em",
-          color: "rgba(255,255,255,0.15)",
-          fontWeight: 600,
+          background:
+            "radial-gradient(circle at center, rgba(255,107,0,0.12) 0%, rgba(255,107,0,0.04) 35%, transparent 75%)",
         }}
-      >
-        {tagline}
-      </span>
-    </div>
+      />
+
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          boxShadow: "inset 0 0 0 1px rgba(255,107,0,0.18)",
+          borderRadius: "16px",
+        }}
+      />
+
+      <img
+        src={logo}
+        alt={name}
+        className="relative z-10 h-8 w-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-300"
+      />
+    </motion.div>
   );
 }
 
@@ -102,7 +79,6 @@ export function SponsorsSection() {
         background: "linear-gradient(180deg, #060d1f 0%, #070e22 100%)",
       }}
     >
-      {/* Top divider line */}
       <div
         className="absolute top-0 left-20 right-20 h-px"
         style={{
@@ -111,7 +87,6 @@ export function SponsorsSection() {
         }}
       />
 
-      {/* Subtle radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -121,7 +96,6 @@ export function SponsorsSection() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -144,6 +118,7 @@ export function SponsorsSection() {
             </span>
             <div style={{ width: 50, height: 1, background: "rgba(255,107,0,0.4)" }} />
           </div>
+
           <h2
             style={{
               fontFamily: "'Barlow Condensed', sans-serif",
@@ -156,9 +131,9 @@ export function SponsorsSection() {
               margin: 0,
             }}
           >
-            BRANDS WE{" "}
-            <span style={{ color: "#FF6B00" }}>DEAL WITH</span>
+            BRANDS WE <span style={{ color: "#FF6B00" }}>DEAL WITH</span>
           </h2>
+
           <p
             style={{
               fontFamily: "'Space Grotesk', sans-serif",
@@ -172,35 +147,26 @@ export function SponsorsSection() {
           </p>
         </motion.div>
 
-        {/* Partner logos grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px"
-          style={{
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.05)",
-            borderRadius: "2px",
-            overflow: "hidden",
-          }}
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4"
         >
           {partners.map((partner, i) => (
             <motion.div
               key={partner.name}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
-              style={{ background: "#060d1f" }}
             >
-              <LogoPlaceholder {...partner} />
+              <LogoCard {...partner} />
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Descriptor note */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
